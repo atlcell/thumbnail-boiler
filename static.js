@@ -1,18 +1,13 @@
 // example run : node sharp-convert.js ~/Projects/docs/public/images/output/new
 
 const fs = require('fs');
-const process = require('process');
-const path = require('path');
+const process = require('process')
+const path = require('path')
 const glob = require("glob")
-
-
-const dir = process.argv[2];
-
-const input_path = path.join(dir, '**', '*.{jpg,png}');
-
-const output_path = path.join(dir, "min");
-
-const sharp = require('sharp');
+const dir = process.argv[2]
+const input_path = path.join(dir, '**', '*.{jpg,png}')
+const output_path = path.join(dir, "thumb")
+const sharp = require('sharp')
 
 glob(input_path, function (err, files) {
   if (err != null) { throw err; }
@@ -27,7 +22,7 @@ glob(input_path, function (err, files) {
       path.join(output_path, path.basename(inputFile, path.extname(inputFile))+'.jpg'), (err, info) => {
       
       if(err === null) {
-          console.log('successfully compressed '+inputFile);
+          console.log('successfully compressed ' + inputFile);
           /*
           fs.unlink(inputFile, (err2) => {
               if (err2) throw err2;
@@ -37,5 +32,4 @@ glob(input_path, function (err, files) {
 
     });
   });
-
 });
